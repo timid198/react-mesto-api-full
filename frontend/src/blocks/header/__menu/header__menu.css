@@ -1,0 +1,16 @@
+.header__menu {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 879px) {
+.header__menu {
+    right: 27px;
+}
+}

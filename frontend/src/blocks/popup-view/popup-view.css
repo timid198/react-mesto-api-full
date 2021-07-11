@@ -1,0 +1,13 @@
+.popup-view {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: row;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 572px) {
+    .popup-view {
+        flex-direction: column;
+    }
+}

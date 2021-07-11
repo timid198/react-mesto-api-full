@@ -1,0 +1,11 @@
+.popup__close {
+    background-image: url(./../../../images/profile-popup-close.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    cursor: pointer;
+    border-width: none;
+    border-style: none;
+    border-color: none;
+    border-image: none;
+}

@@ -1,0 +1,16 @@
+.main {
+    grid-area: main;
+    position: relative;
+    max-width: 880px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    justify-content: center;
+    align-items: start;
+    align-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, max-content);
+    grid-template-areas:
+    "profile"
+    "elements";
+}

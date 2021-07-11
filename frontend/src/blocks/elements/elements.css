@@ -1,0 +1,31 @@
+.elements {
+    grid-area: elements;
+    position: relative;
+    padding-bottom: 67px;
+    min-width: 880px;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3, 32.05%);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 17px;
+}
+
+@media screen and (min-width: 572px) and (max-width: 879px) {
+    .elements {
+        min-width: 572px;
+        grid-template-columns: repeat(2, 48.5%);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 8px;
+    }
+}
+
+@media screen and (max-width: 571px) {
+    .elements {
+        min-width: 320px;
+        grid-template-columns: repeat(1, 90%);
+        grid-template-rows: repeat(6, 1fr);
+        row-gap: 20px;
+        padding-bottom: 48px;
+    }
+}

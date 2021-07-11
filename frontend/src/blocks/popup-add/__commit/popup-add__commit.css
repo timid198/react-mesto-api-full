@@ -1,0 +1,33 @@
+.popup-add__commit {
+    margin-top: 48px;
+    max-width: 358px;
+    width: 100%;
+    min-height: 50px;
+    background-color: #000000;
+    border-radius: 2px;
+    color: #ffffff;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    border-style: none;
+    border-color: #000000;
+    border-image: none;
+    transition: opacity 2s;
+}
+
+.popup-add__commit:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 572px) {
+    .popup-add__commit {
+        max-width: 238px;
+        min-height: 46px;
+        margin-top: 45px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

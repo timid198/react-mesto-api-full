@@ -1,0 +1,12 @@
+.profile__add {
+    display: flex;
+    padding-left: 27.73%;
+}
+
+@media screen and (max-width: 879px) {
+    .profile__add {
+        align-self: center;
+        padding-left: 0;
+        padding-top: 36px;
+    }
+}

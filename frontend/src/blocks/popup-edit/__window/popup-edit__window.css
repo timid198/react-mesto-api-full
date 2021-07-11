@@ -1,0 +1,16 @@
+.popup-edit__window {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    max-width: 430px;
+    width: 100%;
+    min-height: 330px;
+}
+
+
+@media screen and (max-width: 572px) {
+    .popup-edit__window {
+        width: 282px;
+        min-height: 322px;
+    }
+}

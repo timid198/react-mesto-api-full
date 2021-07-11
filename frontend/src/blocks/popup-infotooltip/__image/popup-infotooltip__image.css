@@ -1,0 +1,19 @@
+.popup-infotooltip__image-sucсess {
+    background-image: url(./../../../images/register-ok.svg);
+    background-size: 120px, 120px, cover;
+    background-repeat: no-repeat;
+    max-width: 120px;
+    min-height: 120px;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-infotooltip__image-failed {
+    background-image: url(./../../../images/register-failed.svg);
+    background-size: 120px, 120px, cover;
+    background-repeat: no-repeat;
+    max-width: 120px;
+    min-height: 120px;
+    width: 100%;
+    height: 100%;
+}

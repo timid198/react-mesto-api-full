@@ -1,0 +1,13 @@
+.popup__title {
+    position: relative;
+    padding-top: 34px;
+    padding-left: 36px;
+    margin: 0;
+}
+
+@media screen and (max-width: 572px) {
+    .popup__title {
+        padding-top: 25px;
+        padding-left: 22px;
+    }
+}

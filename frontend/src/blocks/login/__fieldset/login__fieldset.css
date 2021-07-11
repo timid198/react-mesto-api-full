@@ -1,0 +1,7 @@
+.login__fieldset {    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: none;
+    padding: 0 0 215px;
+}

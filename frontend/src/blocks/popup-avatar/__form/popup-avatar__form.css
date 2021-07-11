@@ -1,0 +1,14 @@
+.popup-avatar__form {
+    border: 0;
+    max-width: 358px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 54px;   
+}
+
+@media screen and (max-width: 572px) {
+    .popup-avatar__form {
+        max-width: 238px;
+        padding-top: 75px;
+    }
+}

@@ -1,0 +1,16 @@
+.register__input {
+    background-color: #000000;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    padding: 30px 0 13px 0;
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCCCCC;
+}
+
+.register__input:focus {
+    outline: none;
+    background-color: #000000;
+}

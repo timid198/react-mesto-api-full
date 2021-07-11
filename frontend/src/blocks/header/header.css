@@ -1,0 +1,29 @@
+.header {
+    position: relative;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    max-width: 880px;
+    width: 100%;
+    padding-top: 45px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(54, 54, 54, 0.7);
+}
+
+@media screen and (max-width: 879px) {
+    .header {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 572px) {
+    .header {
+        padding-top: 28px;
+        padding-bottom: 30.6px;
+    }
+}

@@ -1,0 +1,12 @@
+.element__title-counter {
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    right: 25px;
+    bottom: 18px;
+}

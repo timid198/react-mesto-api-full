@@ -1,0 +1,23 @@
+.popup-edit__close {
+    position: absolute;
+    transform: translate(435px, -45px);
+    background-size: 40px, auto, cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: 40px;
+    height: 40px;
+    transition: opacity 2s;
+}
+
+.popup-edit__close:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 572px) {
+    .popup-edit__close {
+        transform: translate(250px, -40px);
+        background-size: 26px, auto, cover;
+        width: 26px;
+        height: 26px;
+    }
+}

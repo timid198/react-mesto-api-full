@@ -8,6 +8,7 @@ const {
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const allowedCors = require('./middlewares/allowedCors');
 const routerUser = require('./routes/users');
 const routerCards = require('./routes/cards');
 const BadRequestError = require('./errors/bad-request-err');
@@ -30,7 +31,9 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.post('/api/signup', celebrate({
+app.use(allowedCors);
+
+app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
@@ -56,7 +59,7 @@ app.post('/api/signup', celebrate({
       }),
   }, { abortEarly: false }),
 }), createUser);
-app.post('/api/signin', celebrate({
+app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
@@ -71,8 +74,8 @@ app.post('/api/signin', celebrate({
 
 app.use(auth);
 
-app.use('/api/users', routerUser);
-app.use('/api/cards', routerCards);
+app.use('/users', routerUser);
+app.use('/cards', routerCards);
 
 app.use(errorLogger);
 

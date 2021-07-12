@@ -30,6 +30,8 @@ app.use(express.json());
 
 app.use(requestLogger);
 
+app.use('/api', require('../router'));
+
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
@@ -96,8 +98,6 @@ app.use((err, req, res, next) => {
     });
   next();
 });
-
-app.use('/api', require('../router'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 

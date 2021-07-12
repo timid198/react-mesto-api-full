@@ -194,15 +194,15 @@ function handleLogout() {
   history.push('/sign-in');
 }
 
-const [headerLink, setHeaderLink] = useState('/signup');
+const [headerLink, setHeaderLink] = useState('/sign-up');
 const [isHeaderLinkText, setIsHeaderLinkText] = useState('Регистрация');
 
 function handleLinkClick() {
-  if (headerLink === '/signup') {
-    setHeaderLink('/signin');
+  if (headerLink === '/sign-up') {
+    setHeaderLink('/sign-in');
     setIsHeaderLinkText('Войти');
   } else {
-    setHeaderLink('/signup');
+    setHeaderLink('/sign-up');
     setIsHeaderLinkText('Регистрация');
   }
 }
@@ -234,15 +234,15 @@ useEffect(() => {
             <Header loggedIn={loggedIn} handleLogout={handleLogout} mail={userEmail} handleLinkClick={handleLinkClick} headerLink={headerLink} headerLinkText={isHeaderLinkText} />
             { isLoading ? <Spinner /> : '' }
             <Switch >
-              <Route path="/signup">
+              <Route path="/sign-up">
                 <Register handleRegister={handleRegister} clear={isInfoTooltip} />
               </Route>
-              <Route path="/signin">
+              <Route path="/sign-in">
                 <Login handleLogin={handleLogin} />
               </Route>
               <ProtectedRoute exact path="/" component={Main} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} onCardDelete={handleDeleteCard} cards={cards} onCardLike={handleCardLike} loggedIn={loggedIn} />
               <Route>
-                  {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+                  {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
               </Route>
             </Switch>
             

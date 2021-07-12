@@ -97,6 +97,8 @@ app.use((err, req, res, next) => {
   next();
 });
 
+app.use('/api', require('../router'));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT);

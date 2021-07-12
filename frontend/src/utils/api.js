@@ -1,8 +1,6 @@
 class Api {
-    constructor({ address, token, groupID }) {
+    constructor({ address }) {
         this._address = address;
-        this._token = token;
-        this._groupID = groupID;
     }
 
 
@@ -14,29 +12,20 @@ class Api {
     }
 
     getCards() {
-        return fetch(`${this._address}v1/${this._groupID}/cards`, {
-            headers: {
-                authorization: `${this._token}`
-            }
-        })
+        return fetch(`${this._address}/cards`)
             .then(res => this._checkPromise(res))
     }
 
     getUserData() {
-        return fetch(`${this._address}v1/${this._groupID}/users/me`, {
-            headers: {
-                authorization: `${this._token}`
-            }
-        })
+        return fetch(`${this._address}/users/me`)
 
             .then(res => this._checkPromise(res))
     }
 
     pushUserData(data) {
-        return fetch(`${this._address}v1/${this._groupID}/users/me`, {
+        return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: {
-                authorization: `${this._token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -49,10 +38,9 @@ class Api {
     }
 
     pushAddCardData(data) {
-        return fetch(`${this._address}v1/${this._groupID}/cards`, {
+        return fetch(`${this._address}/cards`, {
             method: 'POST',
             headers: {
-                authorization: `${this._token}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -65,11 +53,8 @@ class Api {
     }
 
     deleteCard(id) {
-        return fetch(`${this._address}v1/${this._groupID}/cards/${id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `${this._token}`
-            }
+        return fetch(`${this._address}/${id}/cards`, {
+            method: 'DELETE',            
         })
             .then(response => response.ok
                 ? Promise.resolve('sucsess')
@@ -78,20 +63,16 @@ class Api {
 
     changeCardsLikes(id, isLike) {
         const status = isLike ? 'DELETE' : 'PUT';
-        return fetch(`${this._address}v1/${this._groupID}/cards/likes/${id}`, {
+        return fetch(`${this._address}/cards/${id}/likes`, {
             method: status,
-            headers: {
-                authorization: `${this._token}`
-            }
         })
             .then(res => this._checkPromise(res))
     }
 
     changeAvatar(avatar) {
-        return fetch(`${this._address}v1/${this._groupID}/users/me/avatar`, {
+        return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
             headers: {
-                authorization: `${this._token}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -104,9 +85,7 @@ class Api {
 }
 
 const api = new Api({
-    address: 'https://mesto.nomoreparties.co/',
-    token: '4f64f170-2de3-4b0f-8592-8133023e0f4d',
-    groupID: 'cohort-22',
+    address: 'http://azannik.nomoredomains.rocks/',
   })
 
 export default api;

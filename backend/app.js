@@ -19,14 +19,9 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
-
 app.use(requestLogger);
+
+app.use('/api', require('../router'));
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -66,10 +61,14 @@ app.post('/signin', celebrate({
     }),
   }, { abortEarly: false }),
 }), login);
+
 app.use(auth);
+
 app.use('/users', routerUser);
 app.use('/cards', routerCards);
+
 app.use(errorLogger);
+
 app.use((req, res, next) => {
   next(new NotFoundError('Ресурс не найден.'));
 });
@@ -94,3 +93,11 @@ app.use((err, req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT);
+
+mongoose.connect('mongodb://localhost:27017/mestodb', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+

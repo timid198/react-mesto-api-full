@@ -19,9 +19,8 @@ const app = express();
 const allowedCors = [
   'https://azannik.nomoredomains.rocks',
   'http://azannik.nomoredomains.rocks',
-  'localhost:3000'
+  'localhost:3000',
 ];
-
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -30,11 +29,27 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-
 app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);
+
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const requestHeaders = req.headers['access-control-request-headers'];
+  if (allowedCors.includes(origin)) {
+    console.log(allowedCors.includes(origin));
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+  }
+
+  next();
+});
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -75,23 +90,6 @@ app.post('/signin', celebrate({
   }, { abortEarly: false }),
 }), login);
 
-app.use(function(req, res, next) {
-  const { origin } = req.headers;
-  const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  const requestHeaders = req.headers['access-control-request-headers']; 
-  if (allowedCors.includes(origin)) {
-      console.log(allowedCors.includes(origin));
-      res.header('Access-Control-Allow-Origin', "*");
-  }
-  if (method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-      res.header('Access-Control-Allow-Headers', requestHeaders);
-  }
-  
-  next();
-} );
-
 app.use(auth);
 
 app.use('/users', routerUser);
@@ -123,4 +121,3 @@ app.use((err, req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT);
-

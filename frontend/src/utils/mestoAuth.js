@@ -6,6 +6,7 @@ export const register = (password, email) => {
     return fetch (`${BASE_URL}signup`, {
         method: 'POST',
         headers: {
+            'Origin': 'http://azannik.nomoredomains.rocks/',
             'Content-Type': 'application/json'},
         body: JSON.stringify({password, email})
     })

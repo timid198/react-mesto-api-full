@@ -30,9 +30,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use('/api', require('../router'));
-
-app.post('/signup', celebrate({
+app.post('/api/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
@@ -58,7 +56,7 @@ app.post('/signup', celebrate({
       }),
   }, { abortEarly: false }),
 }), createUser);
-app.post('/signin', celebrate({
+app.post('/api/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
@@ -73,8 +71,8 @@ app.post('/signin', celebrate({
 
 app.use(auth);
 
-app.use('/users', routerUser);
-app.use('/cards', routerCards);
+app.use('/api/users', routerUser);
+app.use('/api/cards', routerCards);
 
 app.use(errorLogger);
 

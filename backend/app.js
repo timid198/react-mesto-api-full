@@ -36,23 +36,6 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use(function(req, res, next) {
-  const { origin } = req.headers;
-  const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  const requestHeaders = req.headers['access-control-request-headers']; 
-  if (allowedCors.includes(origin)) {
-      console.log(allowedCors.includes(origin));
-      res.header('Access-Control-Allow-Origin', "*");
-  }
-  if (method === 'OPTIONS') {
-      res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-      res.header('Access-Control-Allow-Headers', requestHeaders);
-  }
-  
-  next();
-} );
-
 app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
@@ -91,6 +74,23 @@ app.post('/signin', celebrate({
     }),
   }, { abortEarly: false }),
 }), login);
+
+app.use(function(req, res, next) {
+  const { origin } = req.headers;
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  const requestHeaders = req.headers['access-control-request-headers']; 
+  if (allowedCors.includes(origin)) {
+      console.log(allowedCors.includes(origin));
+      res.header('Access-Control-Allow-Origin', "*");
+  }
+  if (method === 'OPTIONS') {
+      res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+      res.header('Access-Control-Allow-Headers', requestHeaders);
+  }
+  
+  next();
+} );
 
 app.use(auth);
 

@@ -1,4 +1,9 @@
-const { allowedCors, DEFAULT_ALLOWED_METHODS } = require('../utils/constants');
+const allowedCors = [
+  'https://azannik.nomoredomains.rocks',
+  'http://azannik.nomoredomains.rocks',
+];
+
+const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers;

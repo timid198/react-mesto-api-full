@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://azannik.nomoredomains.rocks/';
+export const BASE_URL = 'https://api.azannik.nomoredomains.rocks/';
 
 const checkResponse = (response) => response.ok ? response.json() : Promise.reject();
 

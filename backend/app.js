@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-const rootRouter = require('express').Router();
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const {
@@ -29,8 +28,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);
-
-app.use('/api', rootRouter);
 
 app.use(allowedCors);
 

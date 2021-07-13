@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const rootRouter = require('express').Router();
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const {
@@ -29,9 +30,11 @@ app.use(express.json());
 
 app.use(requestLogger);
 
+app.use('/api', rootRouter);
+
 app.use(allowedCors);
 
-app.post('/api/signup', celebrate({
+app.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
@@ -57,7 +60,7 @@ app.post('/api/signup', celebrate({
       }),
   }, { abortEarly: false }),
 }), createUser);
-app.post('/api/signin', celebrate({
+app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
@@ -72,8 +75,8 @@ app.post('/api/signin', celebrate({
 
 app.use(auth);
 
-app.use('/api/users', routerUser);
-app.use('/api/cards', routerCards);
+app.use('/users', routerUser);
+app.use('/cards', routerCards);
 
 app.use(errorLogger);
 

@@ -8,7 +8,7 @@ const {
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-// const allowedCors = require('./middlewares/allowedCors');
+const allowedCors = require('./middlewares/allowedCors');
 const routerUser = require('./routes/users');
 const routerCards = require('./routes/cards');
 const BadRequestError = require('./errors/bad-request-err');
@@ -16,11 +16,6 @@ const NotFoundError = require('./errors/not-found-err');
 
 const { PORT = 3000 } = process.env;
 const app = express();
-const allowedCors = [
-  'https://azannik.nomoredomains.rocks',
-  'http://azannik.nomoredomains.rocks',
-  'localhost:3000',
-];
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -34,22 +29,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-  const requestHeaders = req.headers['access-control-request-headers'];
-  if (allowedCors.includes(origin)) {
-    console.log(allowedCors.includes(origin));
-    res.header('Access-Control-Allow-Origin', '*');
-  }
-  if (method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-    res.header('Access-Control-Allow-Headers', requestHeaders);
-  }
-
-  next();
-});
+app.use(allowedCors);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({

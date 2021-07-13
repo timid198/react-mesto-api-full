@@ -21,7 +21,6 @@ function Register({handleRegister, clear}) {
     function handleSubmit(e) {
         e.preventDefault();
         let { password, email } = data;
-        console.log(password, email)
         handleRegister({password, email})
     }
 

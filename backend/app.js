@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const {
   celebrate, Joi, isCelebrateError,
@@ -29,11 +28,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);
-
-app.use(cors({
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
 
 app.use(allowedCors);
 

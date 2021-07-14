@@ -12,23 +12,18 @@ class Api {
     }
 
     getCards() {
-        return fetch(`${this._address}/cards`, {            
-        credentials: 'include',
-        })
+        return fetch(`${this._address}/cards`)
             .then(res => this._checkPromise(res))
     }
 
     getUserData() {
-        return fetch(`${this._address}/users/me`, {            
-        credentials: 'include',
-        })
+        return fetch(`${this._address}/users/me`)
             .then(res => this._checkPromise(res))
     }
 
     pushUserData(data) {
         return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -44,7 +39,6 @@ class Api {
     pushAddCardData(data) {
         return fetch(`${this._address}/cards`, {
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -59,8 +53,7 @@ class Api {
 
     deleteCard(id) {
         return fetch(`${this._address}/${id}/cards`, {
-            method: 'DELETE',
-            credentials: 'include',            
+            method: 'DELETE',          
         })
             .then(response => response.ok
                 ? Promise.resolve('sucsess')
@@ -71,7 +64,6 @@ class Api {
         const status = isLike ? 'DELETE' : 'PUT';
         return fetch(`${this._address}/cards/${id}/likes`, {
             method: status,
-            credentials: 'include',
         })
             .then(res => this._checkPromise(res))
     }
@@ -79,7 +71,6 @@ class Api {
     changeAvatar(avatar) {
         return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },

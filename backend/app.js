@@ -8,7 +8,7 @@ const {
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const allowedCors = require('./middlewares/allowedCors');
+// const allowedCors = require('./middlewares/allowedCors');
 const routerUser = require('./routes/users');
 const routerCards = require('./routes/cards');
 const BadRequestError = require('./errors/bad-request-err');
@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use(allowedCors);
+// app.use(allowedCors);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({

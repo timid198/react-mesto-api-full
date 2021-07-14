@@ -108,12 +108,7 @@ module.exports = {
     return User.findUserByCredentials({ email, password })
       .then((user) => {
         const token = jwt.sign({ _id: user._id }, 'cohort-22-web-development', { expiresIn: '7d' });
-        res
-          .cookie('jwt', token, {
-            httpOnly: true,
-          })
-          .end();
-        console.log(token);
+        res.setHeader('Authorization', `Bearer ${token}`);
       })
       .catch(() => { throw new UnauthorizedError('Неправильные почта или пароль'); })
       .catch(next);

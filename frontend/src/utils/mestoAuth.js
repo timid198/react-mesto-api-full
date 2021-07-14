@@ -1,6 +1,6 @@
 export const BASE_URL = 'http://api.azannik.nomoredomains.rocks/';
 
-const checkResponse = (res) => {res.ok ? res.json() : Promise.reject()};
+const checkResponse = (response) => response.ok ? response.json() : Promise.reject();
 
 export const register = (password, email) => {
     return fetch (`${BASE_URL}signup`, {
@@ -9,18 +9,17 @@ export const register = (password, email) => {
             'Content-Type': 'application/json'},
         body: JSON.stringify({password, email})
     })
-    .then((res) => checkResponse(res));
+    .then(checkResponse);
 }
 
 export const authorize = (password, email) => {
     return fetch (`${BASE_URL}signin`, {
         method: 'POST',
-        credentials: 'include',
         headers: {
             'Content-Type': 'application/json'},
         body: JSON.stringify({password, email})
     })
-    .then((res) => console.log(res.cookies));
+    .then(checkResponse);
 }
 
 export const getContent = (token) => {

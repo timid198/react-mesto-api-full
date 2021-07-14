@@ -113,6 +113,7 @@ module.exports = {
             httpOnly: true,
           })
           .end();
+        console.log(token);
       })
       .catch(() => { throw new UnauthorizedError('Неправильные почта или пароль'); })
       .catch(next);

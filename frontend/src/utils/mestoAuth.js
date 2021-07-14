@@ -22,7 +22,7 @@ export const authorize = (password, email) => {
         body: JSON.stringify({password, email})
     })
     .then((res) => {
-        res.ok ? res.json() : Promise.reject();
+        res.ok ? res.send() : Promise.reject();
     });
 }
 

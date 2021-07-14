@@ -23,7 +23,8 @@ export const authorize = (password, email) => {
     })
     .then((res) => {
         console.log(res.json());
-        res.ok ? res.send() : Promise.reject();
+        res.ok ? res.json() : Promise.reject();
+        return;
     });
 }
 

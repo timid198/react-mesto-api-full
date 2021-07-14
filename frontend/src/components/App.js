@@ -158,11 +158,8 @@ function handleRegister({password, email}) {
 function handleLogin({password, email}) {
   mestoAuth.authorize(password, email)
   .then(data => {
-    if (data.token) {
       setLoggedIn(true);
-      localStorage.setItem('jwt', data.token);
-      history.push('/');
-    }
+      history.push('/');    
   })
   .catch(err => {
     console.error(err);

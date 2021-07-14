@@ -9,7 +9,7 @@ export const register = (password, email) => {
             'Content-Type': 'application/json'},
         body: JSON.stringify({password, email})
     })
-    .then(checkResponse);
+    .then((res) => checkResponse(res));
 }
 
 export const authorize = (password, email) => {
@@ -20,7 +20,7 @@ export const authorize = (password, email) => {
             'Content-Type': 'application/json'},
         body: JSON.stringify({password, email})
     })
-    .then(checkResponse);
+    .then((res) => checkResponse(res));
 }
 
 export const getContent = (token) => {

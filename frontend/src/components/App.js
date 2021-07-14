@@ -170,6 +170,7 @@ function handleLogin({password, email}) {
 }
 
 function checkToken() {
+  console.log(document.cookie);
   const jwt = localStorage.getItem('jwt');
   if (jwt) {
   mestoAuth.getContent(jwt)

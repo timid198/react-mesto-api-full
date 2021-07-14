@@ -1,6 +1,6 @@
 export const BASE_URL = 'http://api.azannik.nomoredomains.rocks/';
 
-const checkResponse = (response) => response.ok ? response.json() : Promise.reject();
+const checkResponse = (res) => res.ok ? res.json() : Promise.reject();
 
 export const register = (password, email) => {
     return fetch (`${BASE_URL}signup`, {

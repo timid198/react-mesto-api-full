@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
-  getAllUsers, getUserById, updateUserProfile, updateUserAvatar,
+  getAllUsers, getUserById, updateUserProfile, updateUserAvatar, findAuthorized,
 } = require('../controllers/users');
 
 router.get('/', getAllUsers);
@@ -38,6 +38,6 @@ router.patch('/me/avatar', celebrate({
   }),
 }), updateUserAvatar);
 
-router.get('/me', getUserById);
+router.get('/me', findAuthorized);
 
 module.exports = router;

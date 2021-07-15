@@ -103,7 +103,8 @@ module.exports = {
   },
 
   findAuthorized(req, res, next) {
-    const { email } = req.body;
+    console.log(req.user);
+    const { email } = req.user.email;
     User.findOne({ email })
       .then((user) => {
         if (!user) {

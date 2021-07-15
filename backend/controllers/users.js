@@ -126,7 +126,7 @@ module.exports = {
     const { email, password } = req.body;
     return User.findUserByCredentials({ email, password })
       .then((user) => {
-        const token = jwt.sign({ _id: user._id }, 'cohort-22-web-development', { expiresIn: '7d' });
+        const token = jwt.sign({ _id: user._id, email }, 'cohort-22-web-development', { expiresIn: '7d' });
         res
           .cookie('jwt', token, {
             httpOnly: true,

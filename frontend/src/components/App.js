@@ -172,6 +172,7 @@ function handleLogin({password, email}) {
 function checkToken() {
   mestoAuth.getContent()
   .then(data => {
+    console.log(data);
     if (data) {
       setLoggedIn(true);
       history.push('/');

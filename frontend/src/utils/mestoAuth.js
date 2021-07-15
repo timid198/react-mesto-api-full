@@ -25,14 +25,10 @@ export const authorize = (password, email) => {
     .then();
 }
 
-export const getContent = (email) => {
+export const getContent = () => {
     return fetch (`${BASE_URL}users/me`, {
         method: 'GET',
         credentials: 'include',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
     })
     .then();
 }

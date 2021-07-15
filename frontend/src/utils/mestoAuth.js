@@ -32,8 +32,7 @@ export const getContent = (email) => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({email})
+        }
     })
     .then();
 }

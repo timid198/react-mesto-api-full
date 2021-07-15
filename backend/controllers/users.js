@@ -36,9 +36,8 @@ module.exports = {
   },
 
   getUserById(req, res, next) {
-    const profile = req.params.userId;
     const authUser = req.user._id;
-    User.findById(profile)
+    User.findById(authUser)
       .then((user) => {
         if (!user) {
           throw new NotFoundError('Пользователь не найден.');

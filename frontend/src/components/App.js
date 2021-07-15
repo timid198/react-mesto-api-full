@@ -174,6 +174,9 @@ function checkToken() {
   .then(res => {
     console.log(res);
     if (res.status === 401 || res.status === 403) {
+      setLoggedIn(false);
+      history.push('/signin');
+    }else{
       setLoggedIn(true);
       history.push('/');
     }

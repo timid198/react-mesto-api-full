@@ -79,7 +79,6 @@ class Api {
     changeAvatar(avatar) {
         return fetch(`${this._address}/users/me/avatar`, {
             method: 'PATCH',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },

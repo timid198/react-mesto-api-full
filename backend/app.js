@@ -28,6 +28,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);
+app.use(allowedCors);
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -72,8 +73,6 @@ app.use(auth);
 
 app.use('/users', routerUser);
 app.use('/cards', routerCards);
-
-app.use(allowedCors);
 
 app.use(errorLogger);
 

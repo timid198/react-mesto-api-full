@@ -34,5 +34,5 @@ export const getContent = () => {
             'Content-Type': 'application/json'
         }
     })
-    .then(res => res.send());
+    .then();
 }

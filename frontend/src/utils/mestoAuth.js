@@ -22,7 +22,7 @@ export const authorize = (password, email) => {
             'Content-Type': 'application/json'},
         body: JSON.stringify({password, email})
     })
-    .then(checkResponse);
+    .then(res => res.send());
 }
 
 export const getContent = () => {
@@ -34,5 +34,5 @@ export const getContent = () => {
             'Content-Type': 'application/json'
         }
     })
-    .then(checkResponse);
+    .then(res => res.send());
 }

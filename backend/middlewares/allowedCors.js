@@ -3,7 +3,7 @@ const allowedCors = [
   'http://azannik.nomoredomains.rocks',
 ];
 
-const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+const DEFAULT_ALLOWED_METHODS = 'PUT,PATCH,DELETE';
 
 module.exports = (req, res, next) => {
   const { origin } = req.headers;

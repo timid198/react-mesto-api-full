@@ -178,8 +178,7 @@ function checkToken() {
       history.push('/');
     }
   })
-  .catch(err => console.error(err))
-  }
+  .catch(err => console.error(err))  
 }
 
 function handleLogout() {

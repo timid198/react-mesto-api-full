@@ -170,9 +170,7 @@ function handleLogin({password, email}) {
 }
 
 function checkToken() {
-  const jwt = localStorage.getItem('jwt');
-  if (jwt) {
-  mestoAuth.getContent(jwt)
+  mestoAuth.getContent()
   .then(data => {
     if (data.data.email) {
       setUserEmail(data.data.email);

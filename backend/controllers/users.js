@@ -103,7 +103,6 @@ module.exports = {
   },
 
   findAuthorized(req, res, next) {
-    console.log(req.user);
     const { email } = req.user.email;
     User.findOne({ email })
       .then((user) => {

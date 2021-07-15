@@ -177,6 +177,8 @@ function checkToken() {
       setLoggedIn(false);
       history.push('/signin');
     }else{
+      setCurrentUser(res.user);
+      setUserEmail(res.user.email);
       setLoggedIn(true);
       history.push('/');
     }

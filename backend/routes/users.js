@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
-  getAllUsers, getUserById, updateUserProfile, updateUserAvatar,
+  getAllUsers, getUserById, updateUserProfile, updateUserAvatar, findAuthorized,
 } = require('../controllers/users');
 
 router.get('/', getAllUsers);
@@ -40,10 +40,11 @@ router.patch('/me/avatar', celebrate({
 
 router.get('/me', celebrate({
   body: Joi.object().keys({
-    userId: Joi.string().pattern(/^[a-f\d]{24}$/i).messages({
-      'string.pattern.base': 'Не соответствует _id. Количество символов должно равняться - 24, содержать строчные латинские буквы и цифры.',
+    email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
+      'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
+      'string.empty': 'Поле "email" должно быть заполнено',
     }),
   }, { abortEarly: false }).unknown(true),
-}), getUserById);
+}), findAuthorized);
 
 module.exports = router;

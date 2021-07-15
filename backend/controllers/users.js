@@ -103,6 +103,26 @@ module.exports = {
       .catch(next);
   },
 
+  findAuthorized(req, res, next) {
+    const { email } = req.body;
+    User.findOne({ email })
+      .then((user) => {
+        if (!user) {
+          throw new NotFoundError('Пользователь не найден.');
+        }
+        res.send({ user });
+      })
+      .catch((err) => {
+        if (err.name === 'ValidationError') {
+          throw new BadRequestError('Переданы некорректные данные в метод изменения аватара.');
+        }
+        if (err.name === 'CastError') {
+          throw new BadRequestError('Переданы некорректные данные.');
+        }
+      })
+      .catch(next);
+  },
+
   login(req, res, next) {
     const { email, password } = req.body;
     return User.findUserByCredentials({ email, password })

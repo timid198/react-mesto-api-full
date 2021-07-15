@@ -38,13 +38,6 @@ router.patch('/me/avatar', celebrate({
   }),
 }), updateUserAvatar);
 
-router.get('/me', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().pattern(/\w+@\w+\.\w+/).messages({
-      'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
-      'string.empty': 'Поле "email" должно быть заполнено',
-    }),
-  }, { abortEarly: false }).unknown(true),
-}), findAuthorized);
+router.get('/me', getUserById);
 
 module.exports = router;

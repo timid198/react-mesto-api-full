@@ -30,5 +30,5 @@ export const getContent = () => {
         method: 'GET',
         credentials: 'include',
     })
-    .then();
+    .then(checkResponse);
 }

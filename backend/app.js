@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const {
   celebrate, Joi, isCelebrateError,
 } = require('celebrate');
@@ -23,6 +24,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);

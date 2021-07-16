@@ -6,7 +6,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   const currentUser = React.useContext(CurrentUserContext);
   console.log(card);
   
-  const isOwn = card.some(i => i === currentUser._id);
+  const isOwn = card.some(i => i._id === currentUser._id);
   const cardDeleteButtonClassName = (
     `element__trash ${isOwn ? 'element__trash_set' : 'element__trash_unset'}`
   ); 

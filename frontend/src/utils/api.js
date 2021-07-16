@@ -72,11 +72,11 @@ class Api {
         console.log(status);
         return fetch(`${this._address}/cards/${_id}/likes`, {
             credentials: 'include',
-            method: status,
+            method: `${status}`,
         })
-            .then(res => {console.log(res);
-            this._checkPromise(res)}
-            )
+            .then(response => response.ok
+                ? Promise.resolve('sucsess')
+                : Promise.reject(`Ошибка ${response.status}`))
     }
 
     changeAvatar(avatar) {

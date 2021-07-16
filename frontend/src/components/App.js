@@ -98,12 +98,11 @@ function handleUpdateAvatar(props) {
   function handleCardLike(todo) {
     setLoading(true)
     console.log(todo.likes);
-    console.log(todo.likes);
     console.log(currentUser);
     const isLiked = todo.likes.some((i) => {console.log(i); return i._id === currentUser._id});
     console.log(isLiked);
     api.changeCardsLikes(todo._id, isLiked)
-    .then((card) => {
+    .then(({card}) => {
       // const likedCard = newCard.card;
       console.log(card);
       setCards((state) => state.map((c) => c._id === todo._id ? card : c));})

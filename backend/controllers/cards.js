@@ -75,7 +75,7 @@ module.exports = {
 
   dislikeCard(req, res, next) {
     Card.findByIdAndUpdate(
-      console.log(req.params.cardId),
+      console.log(`в дизлайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
       req.params.cardId,
       { $pull: { likes: req.user._id } },
       { new: true },

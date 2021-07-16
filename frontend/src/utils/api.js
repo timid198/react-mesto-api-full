@@ -63,7 +63,7 @@ class Api {
             credentials: 'include',        
         })
             .then(response => response.ok
-                ? Promise.resolve('sucsess')
+                ? response.send()
                 : Promise.reject(`Ошибка ${response.status}`))
     }
 
@@ -75,7 +75,7 @@ class Api {
             credentials: 'include',
         })
             .then(response => response.ok
-                ? Promise.resolve('sucsess')
+                ? response.send()
                 : Promise.reject(`Ошибка ${response.status}`))
     }
 

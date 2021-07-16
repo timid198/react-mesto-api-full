@@ -57,6 +57,7 @@ module.exports = {
       console.log(`в лайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
     )
       .then((card) => {
+        console.log(card);
         if (!card) {
           throw new NotFoundError('Карточка не найдена.');
         }

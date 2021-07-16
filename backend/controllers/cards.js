@@ -51,10 +51,10 @@ module.exports = {
 
   likeCard(req, res, next) {
     Card.findByIdAndUpdate(
-      console.log(`в лайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
       req.params.cardId,
       { $addToSet: { likes: req.user._id } },
       { new: true },
+      console.log(`в лайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
     )
       .then((card) => {
         if (!card) {
@@ -75,10 +75,10 @@ module.exports = {
 
   dislikeCard(req, res, next) {
     Card.findByIdAndUpdate(
-      console.log(`в дизлайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
       req.params.cardId,
       { $pull: { likes: req.user._id } },
       { new: true },
+      console.log(`в дизлайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
     )
       .then((card) => {
         if (!card) {

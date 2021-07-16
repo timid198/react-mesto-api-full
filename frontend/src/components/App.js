@@ -101,7 +101,8 @@ function handleUpdateAvatar(props) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeCardsLikes(card._id, isLiked)
     .then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card.cards._id ? newCard : c));})
+      console.log(newCard);
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));})
     .catch((err) => console.log(err))
     .finally(() => {setLoading(false)});
 } 
@@ -110,7 +111,8 @@ function handleCardDelete(card) {
   setLoading(true)
   api.deleteCard(card._id)
   .then((newCard) => {
-    setCards((state) => state.filter((c) => c._id === card.cards._id ? !newCard : c));
+    console.log(newCard);
+    setCards((state) => state.filter((c) => c._id === card._id ? !newCard : c));
     closeAllPopups();})
   .catch((err) => console.log(err))
   .finally(() => {setLoading(false)});

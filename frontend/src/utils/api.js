@@ -63,7 +63,7 @@ class Api {
             method: 'DELETE',
             credentials: 'include',        
         })
-            .then(res => res.json())
+            .then(res => {return res.json()})
     }
 
     changeCardsLikes(_id, isLike) {
@@ -72,7 +72,7 @@ class Api {
             method: `${status}`,
             credentials: 'include',
         })
-            .then(res => res.json())
+            .then(res => {return res.json()})
     }
 
     changeAvatar(avatar) {

@@ -9,7 +9,7 @@ module.exports = {
     console.log(name, link);
     Card.create({ name, link, owner: req.user._id })
       .then((card) => {
-        res.send({ data: card });
+        res.send(card);
       })
       .catch((err) => {
         if (err.name === 'CastError') {

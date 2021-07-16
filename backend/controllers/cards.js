@@ -51,7 +51,7 @@ module.exports = {
 
   likeCard(req, res, next) {
     Card.findByIdAndUpdate(
-      console.log(req.params.cardId),
+      console.log(`в лайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
       req.params.cardId,
       { $addToSet: { likes: req.user._id } },
       { new: true },

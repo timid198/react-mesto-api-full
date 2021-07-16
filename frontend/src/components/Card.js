@@ -2,11 +2,10 @@ import React from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Card({ card, cardClick, onCardDelete, onCardLike }) {
-  console.log(card.owner);
 
   const currentUser = React.useContext(CurrentUserContext);
   
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
   const cardDeleteButtonClassName = (
     `element__trash ${isOwn ? 'element__trash_set' : 'element__trash_unset'}`
   ); 

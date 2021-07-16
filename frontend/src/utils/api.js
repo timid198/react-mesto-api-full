@@ -62,9 +62,7 @@ class Api {
             method: 'DELETE',
             credentials: 'include',        
         })
-            .then(response => response.ok
-                ? response.json()
-                : Promise.reject(`Ошибка ${response.status}`))
+            .then()
     }
 
     changeCardsLikes(_id, isLike) {
@@ -74,9 +72,7 @@ class Api {
             method: `${status}`,
             credentials: 'include',
         })
-            .then(response => response.ok
-                ? response.json()
-                : Promise.reject(`Ошибка ${response.status}`))
+            .then()
     }
 
     changeAvatar(avatar) {

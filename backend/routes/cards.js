@@ -37,7 +37,7 @@ router.put('/:cardId/likes', celebrate({
     cardId: Joi.string().pattern(/^[a-f\d]{24}$/i).messages({
       'string.pattern.base': 'Не соответствует _id. Количество символов должно равняться - 24, содержать строчные латинские буквы и цифры.',
     }),
-  }, { abortEarly: false }).unknown(true),
+  }).unknown(true),
 }), likeCard);
 
 router.delete('/:cardId/likes', celebrate({
@@ -45,7 +45,7 @@ router.delete('/:cardId/likes', celebrate({
     cardId: Joi.string().pattern(/^[a-f\d]{24}$/i).messages({
       'string.pattern.base': 'Не соответствует _id. Количество символов должно равняться - 24, содержать строчные латинские буквы и цифры.',
     }),
-  }, { abortEarly: false }).unknown(true),
+  }).unknown(true),
 }), dislikeCard);
 
 module.exports = router;

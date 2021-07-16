@@ -11,7 +11,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
     `element__trash ${isOwn ? 'element__trash_set' : 'element__trash_unset'}`
   ); 
 
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
+  const isLiked = card.likes.some(i => i === currentUser._id);
   const cardLikeButtonClassName = (
     `element__title-like ${isLiked ? 'element__title-like_unset' : 'element__title-like_set'}`
   ); 

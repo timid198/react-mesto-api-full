@@ -42,6 +42,7 @@ class Api {
     }
 
     pushAddCardData(data) {
+        console.log.apply(data);
         return fetch(`${this._address}/cards`, {
             method: 'POST',
             credentials: 'include',

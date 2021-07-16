@@ -118,8 +118,10 @@ function handleCardDelete(card) {
 
 function handleAddPlaceSubmit(props) {
   setLoading(true)
+  console.log(props);
   api.pushAddCardData(props)
   .then(res => {
+    console.log(res);
     setCards([res, ...cards]);
     closeAllPopups();})
   .catch((err) => console.log(err))

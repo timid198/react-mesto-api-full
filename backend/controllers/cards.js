@@ -6,6 +6,7 @@ const NotFoundError = require('../errors/not-found-err');
 module.exports = {
   createCard(req, res, next) {
     const { name, link } = req.body;
+    console.log(name, link);
     Card.create({ name, link, owner: req.user._id })
       .then((card) => {
         res.send({ data: card });
@@ -54,10 +55,8 @@ module.exports = {
       req.params.cardId,
       { $addToSet: { likes: req.user._id } },
       { new: true },
-      console.log(`в лайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
     )
       .then((card) => {
-        console.log(card);
         if (!card) {
           throw new NotFoundError('Карточка не найдена.');
         }
@@ -79,10 +78,8 @@ module.exports = {
       req.params.cardId,
       { $pull: { likes: req.user._id } },
       { new: true },
-      console.log(`в дизлайках: карточка - ${req.params.cardId}, пользователь - ${req.user._id}`),
     )
       .then((card) => {
-        console.log(card);
         if (!card) {
           throw new NotFoundError('Карточка не найдена.');
         }

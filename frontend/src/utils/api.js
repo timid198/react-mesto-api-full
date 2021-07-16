@@ -69,6 +69,7 @@ class Api {
 
     changeCardsLikes(_id, isLike) {
         const status = isLike ? 'DELETE' : 'PUT';
+        console.log(status);
         return fetch(`${this._address}/cards/${_id}/likes`, {
             credentials: 'include',
             method: status,

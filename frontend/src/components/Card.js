@@ -5,9 +5,10 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
 
   const currentUser = React.useContext(CurrentUserContext);
   console.log(card);
+  const cardOwner = card.owner
   
-  const isOwn = card.owner === currentUser._id;
-  const isCardOwn = card.owner._id === currentUser._id;
+  const isOwn = cardOwner === currentUser._id;
+  const isCardOwn = `${cardOwner._id}` === `${currentUser._id}`;
 
   console.log(`истинно при лайках: ${isOwn}, истинно при рендере: ${isCardOwn}, выражение на проверку: ${isOwn || isCardOwn}`);
 

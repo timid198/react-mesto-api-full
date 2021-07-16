@@ -6,9 +6,13 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   const currentUser = React.useContext(CurrentUserContext);
   console.log(card);
   
-  const isOwn = card.some(i => i === currentUser._id);
+  const isOwn = card.owner === currentUser._id;
+  const isCardOwn = card.owner._id === currentUser._id;
+
+  console.log(`истинно при лайках: ${isOwn}, истинно при рендере: ${isCardOwn}, выражение на проверку: ${isOwn || isCardOwn}`);
+
   const cardDeleteButtonClassName = (
-    `element__trash ${isOwn ? 'element__trash_set' : 'element__trash_unset'}`
+    `element__trash ${(isOwn || isCardOwn) ? 'element__trash_set' : 'element__trash_unset'}`
   ); 
 
   const isLiked = card.likes.some(i => i === currentUser._id);

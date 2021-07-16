@@ -57,8 +57,8 @@ class Api {
             .then(res => this._checkPromise(res))
     }
 
-    deleteCard(id) {
-        return fetch(`${this._address}/${id}/cards`, {
+    deleteCard(_id) {
+        return fetch(`${this._address}/${_id}/cards`, {
             credentials: 'include',
             method: 'DELETE',        
         })
@@ -67,9 +67,9 @@ class Api {
                 : Promise.reject(`Ошибка ${response.status}`))
     }
 
-    changeCardsLikes(id, isLike) {
+    changeCardsLikes(_id, isLike) {
         const status = isLike ? 'DELETE' : 'PUT';
-        return fetch(`${this._address}/cards/${id}/likes`, {
+        return fetch(`${this._address}/cards/${_id}/likes`, {
             credentials: 'include',
             method: status,
         })

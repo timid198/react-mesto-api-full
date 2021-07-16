@@ -79,7 +79,7 @@ function handleUpdateUser(props) {
   setLoading(true)
   api.pushUserData(props)
   .then(res => {
-    setCurrentUser(res);
+    setCurrentUser(res.user);
     closeAllPopups();})
   .catch((err) => console.log(err))
   .finally(() => {setLoading(false)});
@@ -89,7 +89,7 @@ function handleUpdateAvatar(props) {
   setLoading(true)
   api.changeAvatar(props.avatar)
   .then(res => {
-    setCurrentUser(res);
+    setCurrentUser(res.user);
     closeAllPopups();})
   .catch((err) => console.log(err))
   .finally(() => {setLoading(false)});
@@ -119,7 +119,7 @@ function handleAddPlaceSubmit(props) {
   setLoading(true)
   api.pushAddCardData(props)
   .then(res => {
-    setCards([res, ...cards]);
+    setCards([res.cards, ...cards]);
     closeAllPopups();})
   .catch((err) => console.log(err))
   .finally(() => {setLoading(false)});

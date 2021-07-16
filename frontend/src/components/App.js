@@ -100,7 +100,7 @@ function handleUpdateAvatar(props) {
     console.log(todo);
     console.log(currentUser);
     const isLiked = todo.likes.some(i => i._id === currentUser._id);
-    api.changeCardsLikes(todo._id, isLiked)
+    api.changeCardsLikes({_id: todo._id, isLiked})
     .then(({card}) => {
       // const likedCard = newCard.card;
       console.log(card);

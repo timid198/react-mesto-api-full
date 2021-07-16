@@ -97,6 +97,7 @@ function handleUpdateAvatar(props) {
   
   function handleCardLike(card) {
     setLoading(true)
+    console.log(card);
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeCardsLikes(card._id, isLiked)
     .then((newCard) => {

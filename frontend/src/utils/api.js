@@ -54,7 +54,7 @@ class Api {
             })
         })
 
-            .then(res => this._checkPromise(res))
+            .then(res => res.json())
     }
 
     deleteCard(_id) {
@@ -62,7 +62,7 @@ class Api {
             method: 'DELETE',
             credentials: 'include',        
         })
-            .then()
+            .then(res => res.json())
     }
 
     changeCardsLikes(_id, isLike) {

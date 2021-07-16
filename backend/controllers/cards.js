@@ -35,7 +35,7 @@ module.exports = {
         }
         if (`${req.user._id}` === `${card.owner._id}`) {
           Card.findByIdAndRemove(cardIdentificator)
-            .then((data) => res.send(data));
+            .then(() => res.send());
         }
         throw new AuthorizedButForbiddenError('Вы пытаетесь изменить не свои данные.');
       })

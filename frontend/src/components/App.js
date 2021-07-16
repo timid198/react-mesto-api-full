@@ -95,17 +95,17 @@ function handleUpdateAvatar(props) {
   .finally(() => {setLoading(false)});
   }
   
-  function handleCardLike(todo) {
+  function handleCardLike(card) {
     setLoading(true)
-    console.log(todo.likes);
+    console.log(card.likes);
     console.log(currentUser);
-    const isLiked = todo.likes.some((i) => {console.log(i); return i._id === currentUser._id});
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
     console.log(isLiked);
-    api.changeCardsLikes(todo._id, isLiked)
-    .then(({card}) => {
+    api.changeCardsLikes(card._id, isLiked)
+    .then((newCard) => {
       // const likedCard = newCard.card;
-      console.log(card);
-      setCards((state) => state.map((c) => c._id === todo._id ? card : c));})
+      console.log(newCard);
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));})
     .catch((err) => console.log(err))
     .finally(() => {setLoading(false)});
 } 

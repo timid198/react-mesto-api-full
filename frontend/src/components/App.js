@@ -98,7 +98,8 @@ function handleUpdateAvatar(props) {
   function handleCardLike(todo) {
     setLoading(true)
     console.log(todo);
-    const isLiked = todo.likes.some(i => i._id === currentUser.user._id);
+    console.log(currentUser);
+    const isLiked = todo.likes.some(i => i._id === currentUser._id);
     api.changeCardsLikes(todo._id, isLiked)
     .then(({card}) => {
       // const likedCard = newCard.card;

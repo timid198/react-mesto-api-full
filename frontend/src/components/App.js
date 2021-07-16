@@ -69,8 +69,8 @@ function App() {
         const [userData, cardsData] = res;
         console.log(userData);
         console.log(cardsData);
-        setCurrentUser(userData);
-        setCards(cardsData);}) 
+        setCurrentUser(userData.user);
+        setCards(cardsData.cards);}) 
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})
   }, [])

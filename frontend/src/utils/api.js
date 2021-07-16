@@ -58,9 +58,9 @@ class Api {
     }
 
     deleteCard(_id) {
-        return fetch(`${this._address}/${_id}/cards`, {
-            credentials: 'include',
-            method: 'DELETE',        
+        return fetch(`${this._address}/${_id}/cards`, {            
+            method: 'DELETE',
+            credentials: 'include',        
         })
             .then(response => response.ok
                 ? Promise.resolve('sucsess')
@@ -71,8 +71,8 @@ class Api {
         const status = isLike ? 'DELETE' : 'PUT';
         console.log(status);
         return fetch(`${this._address}/cards/${_id}/likes`, {
-            credentials: 'include',
             method: `${status}`,
+            credentials: 'include',
         })
             .then(response => response.ok
                 ? Promise.resolve('sucsess')

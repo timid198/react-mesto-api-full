@@ -22,8 +22,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   //   setLiked(true)
   // }, [isCardLiked])
 
-  // console.log(`при лайке: лайкосики  - ${isLiked}
-  //                         объедок карты - ${isCardLiked}`);
+  console.log(card);
 
   const cardLikeButtonClassName = (
     `element__title-like ${isLiked ? 'element__title-like_set' : 'element__title-like_unset'}`

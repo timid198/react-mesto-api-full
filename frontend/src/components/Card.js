@@ -12,11 +12,19 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
     `element__trash ${(isOwn || isCardOwn) ? 'element__trash_set' : 'element__trash_unset'}`
   ); 
 
-  const isLiked =  card.likes.some(i => i._id === currentUser._id);
+  const isLiked = (card) => {
+    if(card.likes.length !== 'null') {
+      if(card.likes.some(i => i === currentUser._id)) {
+        return true;
+      }
+      return;
+    }
+    return false;  
+  }
   const isCardLiked = Array.from(card);
   console.log(`при лайке: лайкосики  - ${card.likes}
                           объедок карты - ${isCardLiked}
-                          приходит в компонент из App - ${[card]}`);
+                          приходит в компонент из App - ${isLiked}`);
   // console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);
 
   const cardLikeButtonClassName = (

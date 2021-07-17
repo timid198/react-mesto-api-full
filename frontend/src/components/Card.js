@@ -20,7 +20,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
 
   useEffect(() => {
     setLiked(true)
-  }, isCardLiked)
+  }, [isCardLiked])
 
   console.log(`при лайке: лайкосики  - ${isLiked}
                           объедок карты - ${isCardLiked}`);

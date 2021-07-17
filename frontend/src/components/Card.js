@@ -13,7 +13,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   ); 
 
   const isLiked = card.likes.some(i => i === currentUser._id);
-  const isCardLiked = {card};
+  const isCardLiked = Array.from(card);
   console.log(`при лайке: лайкосики  - ${card.likes}
                           объедок карты - ${isCardLiked}
                           приходит в компонент из App - ${[card]}`);

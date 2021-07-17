@@ -71,7 +71,7 @@ function App() {
       .then(res => {
         const [userData, cardsData] = res;
         setCurrentUser(userData);
-        setUserEmail(res.email);
+        setUserEmail(userData.email);
         setCards(cardsData);}) 
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})

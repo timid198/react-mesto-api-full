@@ -59,7 +59,7 @@ function App() {
   }
 
   const [currentUser, setCurrentUser] = useState( {name: '', about: '', avatar: '', _id: ''} );
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState();
   const [isLoading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');

@@ -71,6 +71,7 @@ function App() {
       .then(res => {
         const [userData, cardsData] = res;
         setCurrentUser(userData);
+        setUserEmail(res.email);
         setCards(cardsData);}) 
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})
@@ -176,8 +177,7 @@ function checkToken() {
     if (res.status === 401 || res.status === 403) {
       setLoggedIn(false);
       history.push('/signin');
-    }else{
-      setUserEmail(res.email);
+    }else{      
       setLoggedIn(true);
       history.push('/');
       setLoading(true)    

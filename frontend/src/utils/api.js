@@ -63,7 +63,7 @@ class Api {
             method: 'DELETE',
             credentials: 'include',        
         })
-            .then(res => console.log(res))
+            .then(res => res.send())
     }
 
     changeCardsLikes(_id, isLike) {

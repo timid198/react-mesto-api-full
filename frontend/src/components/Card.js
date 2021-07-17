@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Card({ card, cardClick, onCardDelete, onCardLike }) {
@@ -12,15 +12,21 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
     `element__trash ${(isOwn || isCardOwn) ? 'element__trash_set' : 'element__trash_unset'}`
   ); 
 
-  const isLiked =  card.likes.some(i => i === currentUser._id);
-  const isCardLiked = card.likes.length > 0;
-  console.log(`при лайке: лайкосики  - ${card.likes}
-                          объедок карты - ${isCardLiked}
-                          приходит в компонент из App - ${card}`);
+  // const isLiked =  card.likes.some(i => i === currentUser._id);
+  const isCardLiked = card.likes.some(i => i === currentUser._id);
+  
   // console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);
+  const [isLiked, setLiked] = useState(false);
+
+  useEffect(() => {
+    setLiked(true)
+  }, [isCardLiked])
+
+  console.log(`при лайке: лайкосики  - ${isLiked}
+                          объедок карты - ${isCardLiked}`);
 
   const cardLikeButtonClassName = (
-    `element__title-like ${(isLiked && isCardLiked)? 'element__title-like_set' : 'element__title-like_unset'}`
+    `element__title-like ${isLiked ? 'element__title-like_set' : 'element__title-like_unset'}`
   ); 
 
   function handleClick() {

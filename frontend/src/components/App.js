@@ -100,7 +100,6 @@ function handleUpdateAvatar(props) {
     const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeCardsLikes(card._id, isLiked)
     .then((newCard) => {
-      console.log(newCard);
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));})
     .catch((err) => console.log(err))
     .finally(() => {setLoading(false)});
@@ -183,10 +182,19 @@ function checkToken() {
       setLoggedIn(false);
       history.push('/signin');
     }else{
-      setCurrentUser(res.user);
       setUserEmail(res.user.email);
       setLoggedIn(true);
       history.push('/');
+      setLoading(true)
+    Promise.all([api.getUserData(), api.getCards()])
+      .then(res => {
+        const [userData, cardsData] = res;
+        console.log(userData);
+        console.log(cardsData);
+        setCurrentUser(userData.user);
+        setCards(cardsData.cards);}) 
+      .catch((err) => console.log(err))
+      .finally(() => {setLoading(false)})
     }
   })
   .catch(err => console.error(err))  

@@ -13,7 +13,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   ); 
 
   const isLiked =  card.likes.some(i => i._id === currentUser._id);
-  const isCardLiked = card.likes === currentUser._id;
+  const isCardLiked = `${card.likes}` === currentUser._id;
 
   console.log(card.likes, isCardLiked);
 

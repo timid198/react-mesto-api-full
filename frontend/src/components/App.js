@@ -100,7 +100,7 @@ function handleUpdateAvatar(props) {
   
   function handleCardLike(card) {
     setLoading(true)
-    const isLiked = card.likes.some(i => i === currentUser._id);
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
     const setLiked = card.likes === currentUser._id;
     const liked = isLiked || setLiked;
     console.log(card , isLiked , setLiked , liked)

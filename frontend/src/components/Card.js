@@ -13,19 +13,12 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   ); 
 
   const isLiked =  card.likes.some(i => i._id === currentUser._id);
-  // const isCardLiked = card.likes.some(i => i === currentUser._id);
-  
-  // console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);
-  // const [isLiked, setLiked] = useState(false);
-
-  // useEffect(() => {
-  //   setLiked(true)
-  // }, [isCardLiked])
+  const isCardLiked = card === currentUser._id;
 
   console.log(card.likes);
 
   const cardLikeButtonClassName = (
-    `element__title-like ${(isOwn || isLiked) ? 'element__title-like_set' : 'element__title-like_unset'}`
+    `element__title-like ${(isCardLiked || isLiked) ? 'element__title-like_set' : 'element__title-like_unset'}`
   ); 
 
   function handleClick() {

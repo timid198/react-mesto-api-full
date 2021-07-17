@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
 const BadRequestError = require('../errors/bad-request-err');
 const AuthorizedButForbiddenError = require('../errors/authorized-but-forbidden-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
@@ -126,7 +127,7 @@ module.exports = {
     const { email, password } = req.body;
     return User.findUserByCredentials({ email, password })
       .then((user) => {
-        const token = jwt.sign({ _id: user._id, email }, 'cohort-22-web-development', { expiresIn: '7d' });
+        const token = jwt.sign({ _id: user._id, email }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
         res
           .cookie('jwt', token, {
             httpOnly: true,

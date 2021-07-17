@@ -72,7 +72,7 @@ class Api {
             method: `${status}`,
             credentials: 'include',
         })
-            .then(res => {return res.json()})
+            .then(res => this._checkPromise(res))
     }
 
     changeAvatar(avatar) {

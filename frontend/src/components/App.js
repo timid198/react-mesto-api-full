@@ -73,7 +73,7 @@ function App() {
         console.log(userData);
         console.log(cardsData);
         setCurrentUser(userData.user);
-        setCards(cardsData.cards);}) 
+        setCards(cardsData);}) 
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})
   }, [loggedIn])

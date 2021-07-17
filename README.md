@@ -5,5 +5,6 @@
 
 ссылка на сайт:
 
-
+IP: http://84.201.140.116
 http://azannik.nomoredomains.rocks/
+https://azannik.nomoredomains.rocks/

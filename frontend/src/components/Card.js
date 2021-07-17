@@ -17,14 +17,14 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
       if(card.likes.some(i => i === currentUser._id)) {
         return true;
       }
-      return;
+      return true;
     }
     return false;  
   }
   const isCardLiked = Array.from(card);
   console.log(`при лайке: лайкосики  - ${card.likes}
                           объедок карты - ${isCardLiked}
-                          приходит в компонент из App - ${isLiked}`);
+                          приходит в компонент из App - `+isLiked);
   // console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);
 
   const cardLikeButtonClassName = (

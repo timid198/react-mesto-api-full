@@ -11,10 +11,12 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   const cardDeleteButtonClassName = (
     `element__trash ${(isOwn || isCardOwn) ? 'element__trash_set' : 'element__trash_unset'}`
   ); 
-console.log(`при рендере: ${card}, при лайке: ${card.likes}, выражение: ${card.likes || card}`);
 
   const isLiked = card.likes.some(i => i === currentUser._id);
-  // const isCardLiked = card.likes.some(i => i === currentUser._id);
+  const isCardLiked = card.likes._id.some(i => i === currentUser._id);
+
+  console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);
+
   const cardLikeButtonClassName = (
     `element__title-like ${isLiked ? 'element__title-like_unset' : 'element__title-like_set'}`
   ); 

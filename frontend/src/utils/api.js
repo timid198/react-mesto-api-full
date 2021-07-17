@@ -72,7 +72,7 @@ class Api {
             method: `${status}`,
             credentials: 'include',
         })
-            .then()
+            .then(res => {return res.json()})
     }
 
     changeAvatar(avatar) {

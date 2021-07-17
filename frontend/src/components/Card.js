@@ -12,7 +12,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
     `element__trash ${(isOwn || isCardOwn) ? 'element__trash_set' : 'element__trash_unset'}`
   ); 
 
-  const isLiked =  card.likes.some(i => i === currentUser._id);
+  const isLiked =  card.likes.some(i => i._id === currentUser._id);
   const isCardLiked = Array.from(card);
   console.log(`при лайке: лайкосики  - ${card.likes}
                           объедок карты - ${isCardLiked}

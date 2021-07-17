@@ -13,7 +13,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   ); 
 
   const isLiked = card.likes.some(i => i === currentUser._id);
-  const isCardLiked = card;
+  const isCardLiked = card.likes._id;
   console.log(`при лайке:  - ${card.likes}
                            - ${isCardLiked}`);
   // console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);

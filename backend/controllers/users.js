@@ -18,7 +18,7 @@ module.exports = {
       .then((hash) => User.create({
         email, password: hash, name, about, avatar,
       })
-        .then((user) => res.send({ user }))
+        .then((user) => res.send(user))
         .catch((err) => {
           if (err.name === 'ValidationError') {
             throw new BadRequestError('Переданы некорректные данные в метод создания пользователя.');
@@ -32,7 +32,7 @@ module.exports = {
 
   getAllUsers(req, res, next) {
     User.find({})
-      .then((users) => res.send({ users }))
+      .then((users) => res.send(users))
       .catch(next);
   },
 
@@ -44,7 +44,7 @@ module.exports = {
           throw new NotFoundError('Пользователь не найден.');
         }
         if (`${user._id}` === `${authUser}`) {
-          res.send({ user });
+          res.send(user);
         }
         throw new AuthorizedButForbiddenError('Вы не авторизованы.');
       })
@@ -67,7 +67,7 @@ module.exports = {
           if (!user) {
             throw new NotFoundError('Пользователь не найден.');
           }
-          res.send({ user });
+          res.send(user);
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {
@@ -90,7 +90,7 @@ module.exports = {
         if (!user) {
           throw new NotFoundError('Пользователь не найден.');
         }
-        res.send({ user });
+        res.send(user);
       })
       .catch((err) => {
         if (err.name === 'ValidationError') {
@@ -110,7 +110,7 @@ module.exports = {
         if (!user) {
           throw new NotFoundError('Пользователь не найден.');
         }
-        res.send({ user });
+        res.send(user);
       })
       .catch((err) => {
         if (err.name === 'ValidationError') {

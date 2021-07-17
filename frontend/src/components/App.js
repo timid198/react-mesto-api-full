@@ -72,7 +72,7 @@ function App() {
         const [userData, cardsData] = res;
         console.log(userData);
         console.log(cardsData);
-        setCurrentUser(userData.user);
+        setCurrentUser(userData);
         setCards(cardsData);}) 
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})
@@ -82,7 +82,7 @@ function handleUpdateUser(props) {
   setLoading(true)
   api.pushUserData(props)
   .then(res => {
-    setCurrentUser(res.user);
+    setCurrentUser(res);
     closeAllPopups();})
   .catch((err) => console.log(err))
   .finally(() => {setLoading(false)});
@@ -92,7 +92,7 @@ function handleUpdateAvatar(props) {
   setLoading(true)
   api.changeAvatar(props.avatar)
   .then(res => {
-    setCurrentUser(res.user);
+    setCurrentUser(res);
     closeAllPopups();})
   .catch((err) => console.log(err))
   .finally(() => {setLoading(false)});
@@ -181,7 +181,7 @@ function checkToken() {
       setLoggedIn(false);
       history.push('/signin');
     }else{
-      setUserEmail(res.user.email);
+      setUserEmail(res.email);
       setLoggedIn(true);
       history.push('/');
       setLoading(true)    

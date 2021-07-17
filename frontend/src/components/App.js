@@ -70,8 +70,6 @@ function App() {
     Promise.all([api.getUserData(), api.getCards()])
       .then(res => {
         const [userData, cardsData] = res;
-        console.log(userData);
-        console.log(cardsData);
         setCurrentUser(userData);
         setCards(cardsData);}) 
       .catch((err) => console.log(err))
@@ -101,7 +99,6 @@ function handleUpdateAvatar(props) {
   function handleCardLike(card) {
     setLoading(true)
     const isLiked = card.likes.some(i => i === currentUser._id);
-    console.log(card , currentUser)
     api.changeCardsLikes(card._id, isLiked)
     .then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));})
@@ -113,7 +110,6 @@ function handleCardDelete(card) {
   setLoading(true)
   api.deleteCard(card._id)
   .then((newCard) => {
-    console.log(newCard);
     setCards((state) => state.filter((c) => c._id === card._id ? !newCard : c));
     closeAllPopups();})
   .catch((err) => console.log(err))
@@ -125,7 +121,6 @@ function handleAddPlaceSubmit(props) {
   console.log(props);
   api.pushAddCardData(props)
   .then(res => {
-    console.log(res);
     setCards([res, ...cards]);
     closeAllPopups();})
   .catch((err) => console.log(err))

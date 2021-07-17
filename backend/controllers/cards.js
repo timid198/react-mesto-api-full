@@ -61,7 +61,7 @@ module.exports = {
         if (!card) {
           throw new NotFoundError('Карточка не найдена.');
         }
-        res.send({ card });
+        res.send(card);
       })
       .catch((err) => {
         if (err.statusCode === 404) {
@@ -84,7 +84,7 @@ module.exports = {
         if (!card) {
           throw new NotFoundError('Карточка не найдена.');
         }
-        res.send({ card });
+        res.send(card);
       })
       .catch((err) => {
         if (err.statusCode === 404) {

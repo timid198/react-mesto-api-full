@@ -92,7 +92,7 @@ class Api {
 }
 
 const api = new Api({
-    address: 'http://api.azannik.nomoredomains.rocks',
+    address: 'https://api.azannik.nomoredomains.rocks',
   })
 
 export default api;

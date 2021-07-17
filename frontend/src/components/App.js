@@ -61,6 +61,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState( {name: '', about: '', avatar: '', _id: ''} );
   const [cards, setCards] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     setLoading(true)
@@ -73,7 +76,7 @@ function App() {
         setCards(cardsData.cards);}) 
       .catch((err) => console.log(err))
       .finally(() => {setLoading(false)})
-  }, [])
+  }, [loggedIn])
 
 function handleUpdateUser(props) {
   setLoading(true)
@@ -130,13 +133,9 @@ function handleAddPlaceSubmit(props) {
 
 // 12 спринт
 
-const [loggedIn, setLoggedIn] = useState(false);
-const [userEmail, setUserEmail] = useState('');
-const history = useHistory();
-
 useEffect(() =>{
   checkToken();
-}, [loggedIn]);
+}, []);
 
 useEffect(() =>{
   if (loggedIn) {

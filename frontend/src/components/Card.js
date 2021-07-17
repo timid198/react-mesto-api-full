@@ -16,7 +16,7 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
   const isCardLiked = {card};
   console.log(`при лайке: лайкосики  - ${card.likes}
                           объедок карты - ${isCardLiked}
-                          приходит в компонент из App - ${card}`);
+                          приходит в компонент из App - ${[card]}`);
   // console.log(`при рендере: ${isCardLiked}, при лайке: ${isLiked}, выражение: ${isLiked || isCardLiked}`);
 
   const cardLikeButtonClassName = (

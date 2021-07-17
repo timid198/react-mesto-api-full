@@ -20,13 +20,13 @@ function Card({ card, cardClick, onCardDelete, onCardLike }) {
 
   useEffect(() => {
     setLiked(true)
-  }, [isCardLiked])
+  }, isCardLiked)
 
   console.log(`при лайке: лайкосики  - ${isLiked}
                           объедок карты - ${isCardLiked}`);
 
   const cardLikeButtonClassName = (
-    `element__title-like ${isLiked ? 'element__title-like_set' : 'element__title-like_unset'}`
+    `element__title-like ${isLiked ? 'element__title-like_unset' : 'element__title-like_set'}`
   ); 
 
   function handleClick() {

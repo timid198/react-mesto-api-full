@@ -184,16 +184,7 @@ function checkToken() {
       setUserEmail(res.user.email);
       setLoggedIn(true);
       history.push('/');
-      setLoading(true)
-    Promise.all([api.getUserData(), api.getCards()])
-      .then(res => {
-        const [userData, cardsData] = res;
-        console.log(userData);
-        console.log(cardsData);
-        setCurrentUser(userData.user);
-        setCards(cardsData.cards);}) 
-      .catch((err) => console.log(err))
-      .finally(() => {setLoading(false)})
+      setLoading(true)    
     }
   })
   .catch(err => console.error(err))  

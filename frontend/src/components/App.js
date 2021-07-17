@@ -119,7 +119,6 @@ function handleCardDelete(card) {
 
 function handleAddPlaceSubmit(props) {
   setLoading(true)
-  console.log(props);
   api.pushAddCardData(props)
   .then(res => {
     setCards([res, ...cards]);
@@ -173,7 +172,6 @@ function handleLogin({password, email}) {
 function checkToken() {
   mestoAuth.getContent()
   .then(res => {
-    console.log(res);
     if (res.status === 401 || res.status === 403) {
       setLoggedIn(false);
       history.push('/signin');

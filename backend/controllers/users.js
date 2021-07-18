@@ -132,7 +132,7 @@ module.exports = {
           .cookie('jwt', token, {
             httpOnly: true,
           })
-          .end();
+          .send({ message: 'Аутентификация прошла успешно. Добро пожаловать!' });
       })
       .catch(() => { throw new UnauthorizedError('Неправильные почта или пароль'); })
       .catch(next);

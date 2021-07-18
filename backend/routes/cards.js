@@ -1,8 +1,17 @@
 const router = require('express').Router();
+const validator = require('validator');
 const { celebrate, Joi } = require('celebrate');
 const {
   createCard, getAllCards, deleteCardById, likeCard, dislikeCard,
 } = require('../controllers/cards');
+
+const validateUrl = (value) => {
+  const result = validator.isURL(value);
+  if (result) {
+    return value;
+  }
+  throw new Error('Неверная ссылка');
+};
 
 router.get('/', getAllCards);
 
@@ -23,12 +32,7 @@ router.post('/', celebrate({
         'string.max': 'Максимальная длина поля "name" - 30',
         'string.empty': 'Поле "name" должно быть заполнено',
       }),
-    link: Joi.string().required()
-      .pattern(/^(https|http):\/\/(www\.)?[A-Za-z0-9-]*\.[A-Za-z0-9]{2}[A-Za-z0-9-._~:\\/?#[\]@!$&'()*+,;=]*/)
-      .messages({
-        'any.required': 'Поле "link" должно быть заполнено',
-        'string.pattern.base': 'Поле "link" должно быть ссылкой.',
-      }),
+    link: Joi.string().required().custom(validateUrl),
   }, { abortEarly: false }),
 }), createCard);
 

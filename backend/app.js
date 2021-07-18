@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
+const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const validator = require('validator');
 const {
@@ -14,9 +16,11 @@ const routerUser = require('./routes/users');
 const routerCards = require('./routes/cards');
 const BadRequestError = require('./errors/bad-request-err');
 const NotFoundError = require('./errors/not-found-err');
+const ServerError = require('./errors/serverError');
 
 const { PORT = 3000 } = process.env;
 const app = express();
+
 const validateEmail = (value) => {
   const result = validator.isURL(value);
   if (result) {
@@ -25,6 +29,11 @@ const validateEmail = (value) => {
   throw new Error('Неверная электронная почта');
 };
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
+
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -32,10 +41,13 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(limiter);
+
 app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);
+app.use(helmet());
 app.use(allowedCors);
 
 app.get('/crash-test', () => {
@@ -93,16 +105,6 @@ app.use((err, req, res, next) => {
   }
   next(err);
 });
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-  res
-    .status(statusCode)
-    .send({
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка.'
-        : message,
-    });
-  next();
-});
+app.use(ServerError);
 
 app.listen(PORT);

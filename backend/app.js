@@ -1,5 +1,5 @@
 require('dotenv').config();
-const path = require('path');
+// const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -105,6 +105,6 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT);

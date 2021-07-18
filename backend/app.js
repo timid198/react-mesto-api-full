@@ -1,8 +1,8 @@
+/* eslint-disable no-useless-escape */
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const validator = require('validator');
 const {
   celebrate, Joi, isCelebrateError,
 } = require('celebrate');
@@ -39,11 +39,9 @@ app.get('/crash-test', () => {
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().custom((value, helpers) => {
-      if (validator.isEmail(value)) {
-        return value;
-      }
-      return helpers.message('Неверная электронная почта.');
+    email: Joi.string().required().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).messages({
+      'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
+      'string.empty': 'Поле "email" должно быть заполнено',
     }),
     password: Joi.string().required().min(8).messages({
       'string.min': 'Минимальная длина поля "password" - 8',
@@ -67,11 +65,9 @@ app.post('/signup', celebrate({
 }), createUser);
 app.post('/signin', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().custom((value, helpers) => {
-      if (validator.isEmail(value)) {
-        return value;
-      }
-      return helpers.message('Неверная электронная почта.');
+    email: Joi.string().required().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).messages({
+      'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
+      'string.empty': 'Поле "email" должно быть заполнено',
     }),
     password: Joi.string().required().messages({
       'string.min': 'Минимальная длина поля "password" - 8',

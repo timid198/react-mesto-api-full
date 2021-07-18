@@ -20,12 +20,6 @@
     "predeploy": "npm run build", 
     "deploy": "npm run build && scp -r ./build/* timid@84.201.140.116:/home/timid/react-mesto-api-full"  
   }, 
-  "eslintConfig": { 
-    "extends": [ 
-      "react-app", 
-      "react-app/jest" 
-    ] 
-  }, 
   "browserslist": { 
     "production": [ 
       ">0.2%", 

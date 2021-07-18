@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: {
       validator: function validate(v) {
-        return /\w+@[a-zA-Z0-9_.-]+\.[\w-]{2,4}$/.test(v);
+        return /\w+@[\w_.-]+\.[\w-]{2,4}$/.test(v);
       },
     },
   },

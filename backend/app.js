@@ -38,7 +38,7 @@ app.get('/crash-test', () => {
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().pattern(/\w+@[a-zA-Z0-9_.-]+\.[\w-]{2,4}$/).messages({
+    email: Joi.string().required().pattern(/\w+@[\w_.-]+\.[\w-]{2,4}$/).messages({
       'string.pattern.base': 'В поле "email" нужно ввести электронную почту',
       'string.empty': 'Поле "email" должно быть заполнено',
     }),

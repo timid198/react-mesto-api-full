@@ -20,7 +20,7 @@ router.delete('/:cardId', celebrate({
     cardId: Joi.string().pattern(/^[a-f\d]{24}$/i).messages({
       'string.pattern.base': 'Не соответствует _id. Количество символов должно равняться - 24, содержать строчные латинские буквы и цифры.',
     }),
-  }, { abortEarly: false }).unknown(true),
+  }).unknown(true),
 }), deleteCardById);
 
 router.post('/', celebrate({
@@ -33,7 +33,7 @@ router.post('/', celebrate({
         'string.empty': 'Поле "name" должно быть заполнено',
       }),
     link: Joi.string().required().custom(validateUrl),
-  }, { abortEarly: false }),
+  }),
 }), createCard);
 
 router.put('/:cardId/likes', celebrate({

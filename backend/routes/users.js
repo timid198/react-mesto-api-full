@@ -11,7 +11,7 @@ router.get('/:userId', celebrate({
     userId: Joi.string().pattern(/^[a-f\d]{24}$/i).messages({
       'string.pattern.base': 'Не соответствует _id. Количество символов должно равняться - 24, содержать строчные латинские буквы и цифры.',
     }),
-  }, { abortEarly: false }).unknown(true),
+  }).unknown(true),
 }), getUserById);
 
 router.patch('/me', celebrate({
@@ -26,7 +26,7 @@ router.patch('/me', celebrate({
       'string.max': 'Максимальная длина поля "about" - 200',
       'string.empty': 'Поле "about" должно быть заполнено',
     }),
-  }, { abortEarly: false }),
+  }),
 }), updateUserProfile);
 
 router.patch('/me/avatar', celebrate({

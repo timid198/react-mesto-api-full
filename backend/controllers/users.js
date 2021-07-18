@@ -18,7 +18,9 @@ module.exports = {
       .then((hash) => User.create({
         email, password: hash, name, about, avatar,
       })
-        .then((user) => res.send(user))
+        .then((user) => res.send({
+          message: `Профиль успешно создан. Для авторизации необходимо указать указанные при регистрации email: ${user.email} и пароль. Профиль содержит информацию о пользователе используемую в приложении по умолчанию: имя пользователя - ${user.name}, информация о пользователе: ${user.about}`,
+        }))
         .catch((err) => {
           if (err.name === 'ValidationError') {
             throw new BadRequestError('Переданы некорректные данные в метод создания пользователя.');

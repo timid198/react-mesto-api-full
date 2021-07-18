@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 // const helmet = require('helmet');
 const mongoose = require('mongoose');
-const rateLimit = require('express-rate-limit');
+// const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const validator = require('validator');
 const {
@@ -29,10 +29,10 @@ const validateEmail = (value) => {
   throw new Error('Неверная электронная почта');
 };
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-});
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000,
+//   max: 100,
+// });
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
@@ -49,7 +49,7 @@ app.use(express.json());
 app.use(requestLogger);
 app.use(allowedCors);
 
-app.use(helmet());
+// app.use(helmet());
 
 app.get('/crash-test', () => {
   setTimeout(() => {

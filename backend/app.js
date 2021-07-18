@@ -47,8 +47,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(requestLogger);
-app.use(helmet());
 app.use(allowedCors);
+
+app.use(helmet());
 
 app.get('/crash-test', () => {
   setTimeout(() => {

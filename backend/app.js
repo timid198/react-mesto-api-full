@@ -41,6 +41,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
+app.use(helmet());
 app.use(limiter);
 
 app.use(cookieParser());
@@ -48,8 +49,6 @@ app.use(express.json());
 
 app.use(requestLogger);
 app.use(allowedCors);
-
-app.use(helmet());
 
 app.get('/crash-test', () => {
   setTimeout(() => {
